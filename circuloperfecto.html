@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Circulo</title>
+</head>
+<body>
+    <h1 style="text-align: center";>A PERFECT CIRCLE</h1>
+    <style>
+        body {
+            background-color:#87CEFA ;
+        }
+    </style>
+
+    <canvas id="miCanvas" width="600" height="600" style="border: 5px solid #DC143C;"></canvas>
+    <script>
+        const canvas = document.getElementById("miCanvas");
+        const ctx = canvas.getContext("2d");
+        const grosorCirculo = 15; // Cambia el grosor que desees
+        
+        function dibujarCirculo(context, centerX, centerY, radius, currentAngle, color) {
+            context.clearRect(0, 0, canvas.width, canvas.height);
+
+            context.beginPath();
+            context.arc(centerX, centerY, radius, 0, currentAngle);
+            context.strokeStyle = color; // cambio de color
+            context.lineWidth = grosorCirculo; // Ajusta el grosor del círculo
+            context.stroke();
+        }
+
+        let currentAngle = 0;
+        const endAngle = 2 * Math.PI;
+        const increment = 0.03; // Control de velocidad
+        const radioCirculo = 200; // Tamaño del círculo
+        const colorCirculo = "#9400D3"; // Cambia el color aquí (el color es darkviolet)
+
+        function animarConstruccionCirculo() {
+            if (currentAngle <= endAngle) {
+                dibujarCirculo(ctx, canvas.width / 2, canvas.height / 2, radioCirculo, currentAngle, colorCirculo);
+                currentAngle += increment;
+                requestAnimationFrame(animarConstruccionCirculo);
+            }
+        }
+
+        animarConstruccionCirculo();
+    </script>
+</body>
+</html>

@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Reloj</title>
+    <style>
+        body {
+            background-color: rgb(216, 223, 241);
+        }
+    </style>
+</head>
+
+<body onload="comenzarReloj()">
+
+    <h1 style="color: violet;">RELOG CRONOS</h1>
+    <h1 id="textoalarma" style="color: cornflowerblue">00:00:00</h1>
+    <p id="textouno" style="color: blue;">¡¿TE GUSTARÍA SABER CUAL ES LA HORA EN LONDRES??!</p>
+    <input type="button" value="DESUBRE" onclick="CambiarTexto()">
+
+    <script>
+        function CambiarTexto() {
+            document.getElementById("textouno").innerHTML = "!PERDÓN AUN NO HE APRENDIDO CÓMO HACER ESO¡ :( :( :("
+        }
+
+        let elementotextoalarma = document.getElementById("textoalarma");
+
+        function comenzarReloj() {
+            setInterval(tictac, 2000);
+        }
+
+        function tictac() {
+            let tiempoactual = new Date();
+            let hora = tiempoactual.getHours();
+            let minutos = tiempoactual.getMinutes();
+            let segundos = tiempoactual.getSeconds();
+            let ampm = hora >= 12 ? "PM" : "AM";
+
+            // formato para ver relog en 12 horas
+            if (hora > 12) {
+                hora -= 12;
+            } else if (hora === 0) {
+                hora = 12;
+            }
+
+            // Formato para mostrar siempre dos digitos en el relog
+            let minutosFormateados = minutos < 10 ? "0" + minutos : minutos;
+            let segundosFormateados = segundos < 10 ? "0" + segundos : segundos;
+            let textoHora = hora + ':' + minutosFormateados + ':' + segundosFormateados + ' ' + ampm;
+
+            // Actualizacion de contenido
+            elementotextoalarma.textContent = textoHora;
+        }
+    </script>
+</body>
+</html>
